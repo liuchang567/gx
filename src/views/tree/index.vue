@@ -1,16 +1,21 @@
 <template>
   <div class="app-container">
-    <el-input v-model="filterText" placeholder="Filter keyword" style="margin-bottom:30px;" />
-
-    <el-tree
-      ref="tree2"
-      :data="data2"
-      :props="defaultProps"
-      :filter-node-method="filterNode"
-      class="filter-tree"
-      default-expand-all
-    />
-
+    <div class="container">
+      <el-card v-for="item in list" :key="item" :body-style="{ padding: '0px' }" class="card">
+        <img src="/static/img2.png" class="image">
+        <div class="info">
+          <div>姓名：{{ item.title }}</div>
+          <div>职称：{{ item.teacther }}</div>
+          <div>学院：{{ item.school }}</div>
+        </div>
+        <div style="padding: 14px;" class="num">
+          <span>直播开展数量：{{ item.num1 }}</span>
+          <span>网络教研数量：{{ item.num2 }}</span>
+          <span>评课数量：{{ item.num3 }}</span>
+          <span>磨课备课数：{{ item.num4 }}</span>
+        </div>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -19,60 +24,93 @@ export default {
 
   data() {
     return {
-      filterText: '',
-      data2: [{
-        id: 1,
-        label: 'Level one 1',
-        children: [{
-          id: 4,
-          label: 'Level two 1-1',
-          children: [{
-            id: 9,
-            label: 'Level three 1-1-1'
-          }, {
-            id: 10,
-            label: 'Level three 1-1-2'
-          }]
-        }]
-      }, {
-        id: 2,
-        label: 'Level one 2',
-        children: [{
-          id: 5,
-          label: 'Level two 2-1'
-        }, {
-          id: 6,
-          label: 'Level two 2-2'
-        }]
-      }, {
-        id: 3,
-        label: 'Level one 3',
-        children: [{
-          id: 7,
-          label: 'Level two 3-1'
-        }, {
-          id: 8,
-          label: 'Level two 3-2'
-        }]
-      }],
-      defaultProps: {
-        children: 'children',
-        label: 'label'
-      }
-    }
-  },
-  watch: {
-    filterText(val) {
-      this.$refs.tree2.filter(val)
-    }
-  },
-
-  methods: {
-    filterNode(value, data) {
-      if (!value) return true
-      return data.label.indexOf(value) !== -1
+      list: [
+        {
+          no: '2023001',
+          title: '侯芳',
+          pageviews: 40,
+          teacther: '院士',
+          school: '左江学院',
+          time: '2023-04-13 20:00:00',
+          num1: 1,
+          num2: 3,
+          num3: 4,
+          num4: 1
+        },
+        {
+          no: '2023003',
+          title: '吕立国',
+          pageviews: 30,
+          teacther: '教授',
+          school: '左江学院',
+          time: '2023-04-13 20:00:00',
+          num1: 1,
+          num2: 2,
+          num3: 2,
+          num4: 1
+        },
+        {
+          no: '2023004',
+          title: '平小平',
+          pageviews: 28,
+          teacther: '教授助理',
+          school: '交通学院',
+          time: '2023-04-13 20:00:00',
+          num1: 1,
+          num2: 2,
+          num3: 2,
+          num4: 1
+        }
+      ]
     }
   }
 }
 </script>
 
+<style scoped>
+    .container{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .card{
+        width: 30%;
+        height: 300px;
+        margin: 15px;
+    }
+    .info{
+        display: inline-block;
+        vertical-align: 70px;
+    }
+    .info div{
+        padding-left: 20px;
+        padding-bottom: 15px;
+    }
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
+
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .button {
+    padding: 0;
+    float: right;
+  }
+
+  .image {
+    width: 230px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .num{
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

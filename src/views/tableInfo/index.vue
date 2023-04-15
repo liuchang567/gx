@@ -1,29 +1,46 @@
 <template>
   <div class="app-container">
     <div class="container">
-      <el-card v-for="(item,inx) in list" :key="inx" class="roomcard">
-        <div class="left">
-          <img src="/static/img1.png" class="image">
-        </div>
-        <div class="right">
-          <div class="info">
-            <div class="info-itrem"><span>教研室名称：</span>{{ item.title }}</div>
-            <div class="info-itrem"><span>归属学院：</span>{{ item.school }}</div>
-            <div class="info-itrem"><span>教研室负责人：</span>{{ item.teacther }}</div>
-          </div>
-          <div class="info">
-            <div class="info-itrem"><span>教研室人数：</span>{{ item.pageviews }}</div>
-            <div class="info-itrem"><span>成立时间：</span>{{ item.time }}</div>
-          </div>
-          <div class="info desc">
-            <div class="info-itrem"><span>教研室简介：</span>{{ item.desc }}</div>
-          </div>
-          <div class="info desc" style="margin-top: 20px">
-            <el-button type="primary" style="width: 200px" @click="toInfo(item)">进入教室<i class="el-icon-arrow-right el-icon--right" /></el-button>
+      <h3 style="text-align:center">欢迎来到{{ roomName }}</h3>
+      <div class="room">
+        <div class="room-box">
+          <img src="/static/img1.png" class="img">
+          <div class="room-info">
+            <div>负责人：{{ activeroom.teacther }}</div>
+            <div>项目简介： {{ activeroom.desc }}</div>
+            <div>
+              介绍视频
+              <el-button style="margin-left: 20px" type="primary">点击播放<i class="el-icon-video-play el-icon--right" /></el-button>
+              <el-button type="primary" @click="onClick">题库<i class="el-icon-upload el-icon--right" /></el-button>
+            </div>
           </div>
         </div>
-
-      </el-card>
+        <div>
+          <h5>目的意义：</h5>
+          <div>目的意义目的意义目的意义目的意目的意义：目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义：目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义目的意义</div>
+        </div>
+        <div>
+          <h5>课程：</h5>
+          <el-timeline>
+            <el-timeline-item
+              v-for="(activity, index) in activities"
+              :key="index"
+              :icon="activity.icon"
+              :type="activity.type"
+              :color="activity.color"
+              :size="activity.size"
+              :timestamp="activity.timestamp"
+            >
+              {{ activity.content }}
+              <i class="el-icon-video-play" style="color: #409EFF" />
+            </el-timeline-item>
+          </el-timeline>
+        </div>
+        <div>
+          <h5>成员：</h5>
+          <div>学员1，学员1，学员2，学员3，学员4，学员5</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -33,9 +50,10 @@
 export default {
   data() {
     return {
-      formInline: {
-        user: '',
-        region: ''
+      roomName: '',
+      activeroom: {
+        teacther: '',
+        desc: ''
       },
       list: [
         {
@@ -79,14 +97,31 @@ export default {
           desc: '以中华崛起而读书， 富强、民主、文明、和谐 自由、平等、公正、法治 爱国、敬业、诚信、友善 富强 民主 文明 和谐'
         }
       ],
-      listLoading: true,
-      dialogVisible: false,
-      form: {},
-      dialogTitle: ''
+      activities: [{
+        content: '课1',
+        timestamp: '2018-04-12 20:46',
+        size: 'large',
+        type: 'primary',
+        icon: 'el-icon-more'
+      }, {
+        content: '课2',
+        timestamp: '2018-04-13 20:46',
+        color: '#0bbd87'
+      }, {
+        content: '课3',
+        timestamp: '2018-04-14 20:46',
+        size: 'large'
+      }, {
+        content: '课4',
+        timestamp: '2018-04-15 20:46'
+      }]
     }
   },
   created() {
+    console.log(this.$route)
     this.fetchData()
+    this.roomName = this.$route.query.name
+    this.activeroom = this.list.filter(it => it.title === this.roomName)[0]
   },
   methods: {
     fetchData(fomr) {
@@ -131,14 +166,25 @@ export default {
         }
       })
     },
-    toInfo(info) {
+    onClick() {
       this.$router.push({
-        path: '/tableinfo',
-        query: {
-          name: info.title
-        }
+        path: '/tableinfolist'
       })
     }
   }
 }
 </script>
+<style scoped>
+.room-box{
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.img{
+    width: 200px;
+    margin-right: 50px;
+}
+.room-box div{
+    padding: 20px;
+}
+</style>

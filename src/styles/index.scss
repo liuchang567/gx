@@ -19,6 +19,7 @@ label {
 html {
   height: 100%;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 #app {
@@ -62,4 +63,51 @@ div:focus {
 // main-container global css
 .app-container {
   padding: 20px;
+}
+
+
+.el-link {
+    margin-left: 8px;
+}
+
+.roomcard{
+    margin-bottom: 20px;
+    .el-card__body{
+        display: flex;
+        align-items: center;
+        .left{
+            padding: 20px;
+            .image{
+                width: 300px;
+            }
+        }
+        .right{
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            .info{
+                display: flex;
+                flex-direction: column;
+                width: 40%;
+                &.desc{
+                    width: 100%;
+                }
+                .info-itrem{
+                    padding: 10px 0;
+                    font-size: 20px;
+                    span{
+                        color: #979393;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.ssss{
+    position: fixed;
+    z-index: 99999;
+    top: 20px;
+    right: 20px;
 }

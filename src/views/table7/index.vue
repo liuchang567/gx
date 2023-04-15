@@ -1,30 +1,6 @@
 <template>
   <div class="app-container">
-    <div class="container">
-      <el-card v-for="(item,inx) in list" :key="inx" class="roomcard">
-        <div class="left">
-          <img src="/static/img1.png" class="image">
-        </div>
-        <div class="right">
-          <div class="info">
-            <div class="info-itrem"><span>教研室名称：</span>{{ item.title }}</div>
-            <div class="info-itrem"><span>归属学院：</span>{{ item.school }}</div>
-            <div class="info-itrem"><span>教研室负责人：</span>{{ item.teacther }}</div>
-          </div>
-          <div class="info">
-            <div class="info-itrem"><span>教研室人数：</span>{{ item.pageviews }}</div>
-            <div class="info-itrem"><span>成立时间：</span>{{ item.time }}</div>
-          </div>
-          <div class="info desc">
-            <div class="info-itrem"><span>教研室简介：</span>{{ item.desc }}</div>
-          </div>
-          <div class="info desc" style="margin-top: 20px">
-            <el-button type="primary" style="width: 200px" @click="toInfo(item)">进入教室<i class="el-icon-arrow-right el-icon--right" /></el-button>
-          </div>
-        </div>
-
-      </el-card>
-    </div>
+    功能开发中。。。
   </div>
 </template>
 
@@ -45,8 +21,7 @@ export default {
           pageviews: 30,
           teacther: '侯芳',
           school: '左江学院',
-          time: '2023-04-13 20:00:00',
-          desc: '以中华崛起而读书， 富强、民主、文明、和谐 自由、平等、公正、法治 爱国、敬业、诚信、友善 富强 民主 文明 和谐'
+          time: '2023-04-13 20:00:00'
         },
         {
           no: '2023002',
@@ -55,8 +30,7 @@ export default {
           pageviews: 50,
           teacther: '侯芳',
           school: '三江学院',
-          time: '2023-04-13 20:00:00',
-          desc: '以中华崛起而读书， 富强、民主、文明、和谐 自由、平等、公正、法治 爱国、敬业、诚信、友善 富强 民主 文明 和谐'
+          time: '2023-04-13 20:00:00'
         },
         {
           no: '2023003',
@@ -65,8 +39,7 @@ export default {
           pageviews: 30,
           teacther: '吕立国',
           school: '左江学院',
-          time: '2023-04-13 20:00:00',
-          desc: '以中华崛起而读书， 富强、民主、文明、和谐 自由、平等、公正、法治 爱国、敬业、诚信、友善 富强 民主 文明 和谐'
+          time: '2023-04-13 20:00:00'
         },
         {
           no: '2023004',
@@ -75,8 +48,7 @@ export default {
           pageviews: 30,
           teacther: '平小平',
           school: '交通学院',
-          time: '2023-04-13 20:00:00',
-          desc: '以中华崛起而读书， 富强、民主、文明、和谐 自由、平等、公正、法治 爱国、敬业、诚信、友善 富强 民主 文明 和谐'
+          time: '2023-04-13 20:00:00'
         }
       ],
       listLoading: true,
@@ -128,14 +100,6 @@ export default {
             type: 'info',
             message: `action: ${action}`
           })
-        }
-      })
-    },
-    toInfo(info) {
-      this.$router.push({
-        path: '/tableinfo',
-        query: {
-          name: info.title
         }
       })
     }

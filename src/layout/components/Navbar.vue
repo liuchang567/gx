@@ -1,46 +1,34 @@
 <template>
-  <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
-    <breadcrumb class="breadcrumb-container" />
-
-    <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
-        <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">Log Out</span>
+  <div class="right-menu">
+    <el-dropdown class="avatar-container" trigger="click">
+      <div class="avatar-wrapper" style="color:#fff">
+        <span class="username">admin</span>
+        <i class="el-icon-caret-bottom" />
+      </div>
+      <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <router-link to="/">
+          <el-dropdown-item>
+            主页
           </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </div>
+        </router-link>
+        <a target="_blank">
+          <el-dropdown-item>消息</el-dropdown-item>
+        </a>
+        <a target="_blank">
+          <el-dropdown-item>个人中心</el-dropdown-item>
+        </a>
+        <el-dropdown-item divided @click.native="logout">
+          <span style="display:block;">退出登录</span>
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
 
 export default {
-  components: {
-    Breadcrumb,
-    Hamburger
-  },
   computed: {
     ...mapGetters([
       'sidebar',
@@ -115,7 +103,8 @@ export default {
       margin-right: 30px;
 
       .avatar-wrapper {
-        margin-top: 5px;
+        display: flex;
+        align-items: center;
         position: relative;
 
         .user-avatar {
@@ -128,12 +117,17 @@ export default {
         .el-icon-caret-bottom {
           cursor: pointer;
           position: absolute;
-          right: -20px;
-          top: 25px;
+          right: -15px;
+          top: 20px;
           font-size: 12px;
         }
       }
     }
   }
+}
+.username{
+    padding: 0 2px 0 5px;
+    font-size: 16px;
+    font-weight: bold;
 }
 </style>

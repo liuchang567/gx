@@ -1,29 +1,27 @@
 <template>
   <div class="app-container">
     <div class="container">
-      <el-card v-for="(item,inx) in list" :key="inx" class="roomcard">
-        <div class="left">
-          <img src="/static/img1.png" class="image">
+      <div>
+        <div style="margin-bottom: 30px">
+          <el-button type="primary" @click="onClick">返回<i class="el-icon-upload el-icon--right" /></el-button>
+          <el-button type="primary">上传题目<i class="el-icon-upload el-icon--right" /></el-button>
+          <el-button type="primary">下载题目<i class="el-icon-upload el-icon--right" /></el-button>
         </div>
-        <div class="right">
-          <div class="info">
-            <div class="info-itrem"><span>教研室名称：</span>{{ item.title }}</div>
-            <div class="info-itrem"><span>归属学院：</span>{{ item.school }}</div>
-            <div class="info-itrem"><span>教研室负责人：</span>{{ item.teacther }}</div>
-          </div>
-          <div class="info">
-            <div class="info-itrem"><span>教研室人数：</span>{{ item.pageviews }}</div>
-            <div class="info-itrem"><span>成立时间：</span>{{ item.time }}</div>
-          </div>
-          <div class="info desc">
-            <div class="info-itrem"><span>教研室简介：</span>{{ item.desc }}</div>
-          </div>
-          <div class="info desc" style="margin-top: 20px">
-            <el-button type="primary" style="width: 200px" @click="toInfo(item)">进入教室<i class="el-icon-arrow-right el-icon--right" /></el-button>
-          </div>
-        </div>
-
-      </el-card>
+        <el-timeline>
+          <el-timeline-item
+            v-for="(activity, index) in activities"
+            :key="index"
+            :icon="activity.icon"
+            :type="activity.type"
+            :color="activity.color"
+            :size="activity.size"
+            :timestamp="activity.timestamp"
+          >
+            {{ activity.content }}
+            <span style="margin: 0 10px;color: #409EFF">单题下载<i class="el-icon-download" /></span>
+          </el-timeline-item>
+        </el-timeline>
+      </div>
     </div>
   </div>
 </template>
@@ -33,9 +31,10 @@
 export default {
   data() {
     return {
-      formInline: {
-        user: '',
-        region: ''
+      roomName: '',
+      activeroom: {
+        teacther: '',
+        desc: ''
       },
       list: [
         {
@@ -79,14 +78,35 @@ export default {
           desc: '以中华崛起而读书， 富强、民主、文明、和谐 自由、平等、公正、法治 爱国、敬业、诚信、友善 富强 民主 文明 和谐'
         }
       ],
-      listLoading: true,
-      dialogVisible: false,
-      form: {},
-      dialogTitle: ''
+      activities: [{
+        content: '1: 1+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+1=？',
+        timestamp: '答案：10 解析：。。。。',
+        size: 'large',
+        type: 'primary',
+        icon: 'el-icon-more'
+      }, {
+        content: '2: 1+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+2=？',
+        timestamp: '答案：10 解析：。。。。',
+        type: 'primary',
+        icon: 'el-icon-more'
+      }, {
+        content: '3: 1+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+3=？',
+        timestamp: '答案：10 解析：。。。。',
+        type: 'primary',
+        icon: 'el-icon-more'
+      }, {
+        content: '4: 1+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+11+1+1+1+1+1+1+1+1+4=？',
+        timestamp: '答案：10 解析：。。。。',
+        type: 'primary',
+        icon: 'el-icon-more'
+      }]
     }
   },
   created() {
+    console.log(this.$route)
     this.fetchData()
+    this.roomName = this.$route.query.name
+    this.activeroom = this.list.filter(it => it.title === this.roomName)[0]
   },
   methods: {
     fetchData(fomr) {
@@ -131,14 +151,23 @@ export default {
         }
       })
     },
-    toInfo(info) {
-      this.$router.push({
-        path: '/tableinfo',
-        query: {
-          name: info.title
-        }
-      })
+    onClick() {
+      this.$router.back()
     }
   }
 }
 </script>
+<style scoped>
+.room-box{
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.img{
+    width: 200px;
+    margin-right: 50px;
+}
+.room-box div{
+    padding: 20px;
+}
+</style>
