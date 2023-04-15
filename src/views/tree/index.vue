@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="container">
       <el-card v-for="item in list" :key="item" :body-style="{ padding: '0px' }" class="card">
-        <img src="/static/img2.png" class="image">
+        <img src="@/assets/img2.png" class="image">
         <div class="info">
           <div>姓名：{{ item.title }}</div>
           <div>职称：{{ item.teacther }}</div>

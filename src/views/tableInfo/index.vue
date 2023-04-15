@@ -4,7 +4,7 @@
       <h3 style="text-align:center">欢迎来到{{ roomName }}</h3>
       <div class="room">
         <div class="room-box">
-          <img src="/static/img1.png" class="img">
+          <img src="@/assets/img1.png" class="img">
           <div class="room-info">
             <div>负责人：{{ activeroom.teacther }}</div>
             <div>项目简介： {{ activeroom.desc }}</div>

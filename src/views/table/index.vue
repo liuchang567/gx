@@ -3,7 +3,7 @@
     <div class="container">
       <el-card v-for="(item,inx) in list" :key="inx" class="roomcard">
         <div class="left">
-          <img src="/static/img1.png" class="image">
+          <img src="@/assets/img1.png" class="image">
         </div>
         <div class="right">
           <div class="info">
