@@ -82,14 +82,28 @@ export const constantRoutes = [
       {
         path: 'table3',
         name: 'table3',
-        component: () => import('@/views/table7/index'),
+        component: () => import('@/views/nested/index'),
         meta: { title: '教研大赛', icon: '' }
+      },
+      {
+        path: 'nestedinfo',
+        name: 'nestedinfo',
+        hidden: true,
+        component: () => import('@/views/nestedInfo/index'),
+        meta: { title: '教研大赛详情', icon: '' }
       },
       {
         path: 'table4',
         name: 'table4',
-        component: () => import('@/views/table7/index'),
+        component: () => import('@/views/nested2/index'),
         meta: { title: '教研研讨', icon: '' }
+      },
+      {
+        path: 'nestedinfo2',
+        name: 'nestedinfo2',
+        hidden: true,
+        component: () => import('@/views/nestedInfo2/index'),
+        meta: { title: '教研研讨详情', icon: '' }
       }
     ]
   },
